@@ -22,7 +22,7 @@ export async function POST(request) {
         }, 0);
 
         await inngest.send({
-            name: "order/created",
+            name: 'order/created',
             data: {
                 userId,
                 address,
@@ -32,6 +32,7 @@ export async function POST(request) {
             }
         });
         
+        // clear user's cart items
         const user = await UserModel.findById(userId);
         user.cartItems = {}
         await user.save();
