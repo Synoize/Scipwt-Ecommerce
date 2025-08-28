@@ -6,7 +6,7 @@ if (!cached) {
     cached = global.mongoose = {conn: null, promise: null}
 }
 
-async function connectDB(params) {
+async function connectDB() {
     if (cached.conn) {
         return cached.conn
     }
@@ -16,7 +16,7 @@ async function connectDB(params) {
             bufferCommands: false
         }
 
-        cached.promise = mongoose.connect(`${process.env.MONGODB_URI}/ScipwtDB`, opts).then(mongoose => {
+        cached.promise = mongoose.connect(process.env.MONGODB_URI, opts).then(mongoose => {
             return mongoose;
         })
     }
